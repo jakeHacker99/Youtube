@@ -1,49 +1,47 @@
-import React, { Component } from 'react';
-import Header from './component/header';
-import Headline from './component/headline';
-import SharedButton from './component/button';
-import ListItem from './component/listItem';
-import { connect } from 'react-redux';
-import { fetchPosts } from './actions';
-import './app.scss';
+import React, { Component } from "react";
+import Header from "./component/header";
+import Headline from "./component/headline";
+import SharedButton from "./component/button";
+import ListItem from "./component/listItem";
+import { connect } from "react-redux";
+import { fetchPosts } from "./actions";
+import "./app.scss";
 
 /* This const is not used within our app.
    Although we are passing it to the Headline Component
    it is only here as an exampleof testing PropTypes */
-const tempArr = [{
-  fName: 'Joe',
-  lName: 'Bloggs',
-  email: 'joebloggs@gmail.com',
-  age: 24,
-  onlineStatus: true
-}];
-
+const tempArr = [
+  {
+    fName: "Joe",
+    lName: "Bloggs",
+    email: "joebloggs@gmail.com",
+    age: 24,
+    onlineStatus: true,
+  },
+];
 const initialState = {
-  hideBtn: false
+  hideBtn: false,
 };
-
 class App extends Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      ...initialState
-    }
+      ...initialState,
+    };
+
     this.fetch = this.fetch.bind(this);
   }
 
-  fetch(){
+  fetch() {
     this.props.fetchPosts();
-    this.exampleMethod_updatesState();
+    this.exmpleMethod_udpateState();
   }
-
-  exampleMethod_updatesState() {
+  exmpleMethod_udpateState() {
     const { hideBtn } = this.state;
     this.setState({
-      hideBtn: !hideBtn
+      hideBtn: !hideBtn,
     });
   }
-
   exampleMethod_returnsAValue(number) {
     return number + 1;
   }
@@ -53,44 +51,42 @@ class App extends Component {
     const { hideBtn } = this.state;
 
     const configButton = {
-      buttonText: 'Get posts',
-      emitEvent: this.fetch
-    }
+      buttonText: "Get posts",
+      emitEvent: this.fetch,
+    };
 
     return (
       <div className="App" data-test="appComponent">
         <Header />
         <section className="main">
-          <Headline header="Posts" desc="Click the button to render posts!" tempArr={tempArr} />
-          
-          {!hideBtn &&
-            <SharedButton {...configButton} />
-          }
-          
-          {posts.length > 0 &&
+          <Headline
+            header="Posts"
+            desc="Click the button to render posts!"
+            tempArr={tempArr}
+          />
+          {!hideBtn && <SharedButton {...configButton} />}
+          {posts.length > 0 && (
             <div>
               {posts.map((post, index) => {
                 const { title, body } = post;
                 const configListItem = {
                   title,
-                  desc: body
+                  desc: body,
                 };
-                return (
-                  <ListItem key={index} {...configListItem} />
-                )
+                return <ListItem key={index} {...configListItem} />;
               })}
             </div>
-          }
+          )}
         </section>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    posts: state.posts
-  }
-}
+    posts: state.posts,
+  };
+};
 
-export default connect(mapStateToProps, {fetchPosts})(App);
+export default connect(mapStateToProps, { fetchPosts })(App);

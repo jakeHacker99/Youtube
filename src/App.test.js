@@ -38,4 +38,15 @@ describe("App Component", () => {
     const component = findByTestAtrr(wrapper, "appComponent");
     expect(component.length).toBe(1);
   });
+  it("shoud update state", () => {
+    const classInstance = wrapper.instance();
+    classInstance.exmpleMethod_udpateState();
+    const newState = classInstance.state.hideBtn;
+    expect(newState).toBe(true);
+  });
+  it("should return a number", () => {
+    const classInstance = wrapper.instance();
+    const newValue = classInstance.exampleMethod_returnsAValue(123);
+    expect(newValue).toBe(124);
+  });
 });

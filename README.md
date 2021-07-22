@@ -42,16 +42,20 @@ enzyme
 
 shallow
 
+husky
+
 And much More
 ```
 #
-Status: Work In Progess ⌛
+Status: Completed✔️ (22/07-2021)
 
 
 
 ##
 ```
-Author:  { Stephen Grider }
+Author:  { 
+SimpleTut
+}
 ```
 
 

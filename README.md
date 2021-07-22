@@ -1,6 +1,6 @@
 
 ##
-Modules:  {
+Modules:  
 
 ```
 jest 
